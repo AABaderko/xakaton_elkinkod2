@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Chats</title>
+    </head>
+    <body>
+        <center><h1>Hello , Welcome to my chat site ! {{request.user}}</h1></center>
+        <br/>
+        {% if request.user.is_authenticated  %}
+        <center> Logout the chat Page <a href = "{% url 'logout_user' %}">Logout</a></center>
+        {% endif %}
+        <div
+            class="chat__item__container"
+            id="id_chat_item_container"
+            style="font-size: 20px"
+        >
+            <br/>
+            {% for chatmember in chatmemb_list %}
+                {% with chat=chatmember.chat_id %}
+                <a href="{{ chat.get_absolute_url }}">
+                    {{ chat.name }}
+                </a>
+                {% endwith %}
+            {% endfor %}
+        </div>
+    </body>
+    <script>
+        let chat_id_list = [{% for chatmember in chatmemb_list %}{{ chatmember.chat_id.id }},{% endfor %}];
+    </script>
+    <script type="text/javascript" src="{% static 'javascript/chat_list.js' %}"></script>
+</html>

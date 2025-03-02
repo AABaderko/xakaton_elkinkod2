@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Chats</title>
+    </head>
+    <body>
+        <center><h1>Hello , Welcome to my chat site ! {{request.user}}</h1></center>
+        <br/>
+        {% if request.user.is_authenticated  %}
+        <center> Logout the chat Page <a href = "{% url 'logout_user' %}">Logout</a></center>
+        {% endif %}
+        <div
+            class="chat__item__container"
+            id="id_chat_item_container"
+            style="font-size: 20px"
+        >
+            <br/>
+            <a href="{% url 'chats_list' %}">К чатам</a>
+            <br/>
+            <input type="text" id="id_message_send_input" />
+            <button type="submit" id="id_message_send_button">Send Message</button>
+            <br/><br/>
+            {% for message in messages_list %}
+                <div>{{ message.user_id.first_name }} : {{message.text}}</div>
+            {% endfor %}
+        </div>
+    </body>
+    <script>
+        let chat_id = "{{chat_id}}";
+
+        let user_id = "{{request.user.id}}";
+        let user_name = "{{request.user.first_name}}";
+    </script>
+    <script type="text/javascript" src="{% static 'javascript/messages_chat.js' %}"></script>
+</html>

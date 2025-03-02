@@ -1,0 +1,101 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background-color: #f4f4f4;
+}
+.header {
+    background-color: #007bff;
+    color: white;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+}
+.header a {
+    background-color: transparent;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    margin-right: auto;
+}
+.header h1 {
+    flex-grow: 1;
+    text-align: center;
+    margin: 0;
+}
+.header button:hover {
+    text-decoration: underline;
+}
+.messages {
+    flex-grow: 1;
+    padding: 10px;
+    overflow-y: auto;
+    background-color: white;
+    margin: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    /* flex-direction: column-reverse; */
+    flex-direction: column;
+}
+.message {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+}
+.message-info {
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #e9ecef; 
+}
+.message-status {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 5px;
+}
+.message-time {
+    color: #999;
+    font-size: 12px;
+    white-space: nowrap;
+}
+
+.read-indicator {
+    font-size: 12px;
+    color: gray;
+    align-self: flex-end; 
+}
+
+.localuser .message-info {text-align: right;}
+.localuser .message-info .message-status {justify-content: right;}
+.localuser .read-indicator {display: none;}
+
+.input-area {
+    display: flex;
+    padding: 10px;
+    background-color: #fff;
+    border-top: 1px solid #ddd;
+}
+.input-area input {
+    flex-grow: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+.input-area button {
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.input-area button:hover {
+    background-color: #0056b3;
+}
+
+a { text-decoration: none; }

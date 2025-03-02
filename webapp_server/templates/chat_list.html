@@ -1,0 +1,33 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Чат</title>
+    <link rel="stylesheet" href="{% static 'css/chat_list.css' %}"/>
+</head>
+<body>
+
+    <div class="header">
+        <h1>Пользователь:<br/>{{ request.user.get_name }}</h1>
+    </div>
+
+    <ul class="chat-list">
+        {% for chatmember in chatmemb_list %}
+            {% with chat=chatmember.chat_id %}
+            <a href="{{ chat.get_absolute_url }}" class="url">
+                <li class="chat-item">
+                    <div class="chat-info">
+                        <div class="chat-name">{{ chat.name }}</div>
+                        <div class="chat-message">Привет! Как дела?</div>
+                    </div>
+                    <div class="chat-time">12:30</div>
+                </li>
+            </a>
+            {% endwith %}
+        {% endfor %}
+    </ul>
+</body>
+<script type="text/javascript" src="{% static 'javascript/chat_list.js' %}"></script>
+</html>

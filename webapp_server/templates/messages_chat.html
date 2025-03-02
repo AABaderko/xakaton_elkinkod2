@@ -1,0 +1,54 @@
+{% load static %}
+{% load get_date_msg %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Чат</title>
+    <link rel="stylesheet" href="{% static 'css/messages_list.css' %}"/>
+</head>
+<body>
+    <div class="header">
+        <a href="{% url 'chats_list' %}">Назад</a>
+        <h1>{{ chat_member.chat_id.name }}</h1>
+    </div>
+    <div id="id_chat_item_container" class="messages">
+        {% for message in messages_list %}
+        <div class="message {% if message.user_id.id == request.user.id %}{{'localuser'}}{% endif %}">
+            <div class="message-info">
+                <strong class="message-user">{{ message.user_id.get_name }}</strong><br/>
+                <span class="message-text">{{ message.text }}</span>
+                <div class="message-status">
+                    <div class="message-time">{% get_date_msg message.sended_at %}</div>
+                    <span class="read-indicator">✔️</span>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div id="message-template" class="message" style="display: none;">
+        <div class="message-info">
+            <strong class="message-user"></strong><br/>
+            <span class="message-text"></span>
+            <div class="message-status">
+                <div class="message-time"></div>
+                <span class="read-indicator">✔️</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="input-area">
+        <input id="id_message_send_input" type="text" placeholder="Введите ваше сообщение..." />
+        <button id="id_message_send_button" type="submit">Отправить</button>
+    </div>
+</body>
+<script>
+    let chat_id = "{{chat_id}}";
+
+    let user_id = "{{request.user.id}}";
+    let user_name = "{{request.user.first_name}}";
+</script>
+<script type="text/javascript" src="{% static 'javascript/messages_chat.js' %}"></script>
+</html>
